@@ -1,0 +1,32 @@
+enable-image-display: false                  # 启用图片显示，适用于需要验证码登录的情况，启用wait-login自动开启
+load-wait: 2                                 # 页面加载完毕后的等待时间，单位秒，网速不佳时可尝试调大该值
+exec-path: ""                                # 启动chrome的路径，为空会自动在默认路径寻找
+disable-headless: false                      # 禁用无头模式
+request-config:                              # 请求头配置
+  user-agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"                             # 请求user-agent配置
+  headers:                                   # 请求header配置
+  - key: "Accept"                                  # header的key
+    value: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"                                # header的value
+  - key: "Referer"                                  # header的key
+    value: "$URL$"                                # header的value
+  - key: "Accept-Encoding"                                  # header的key
+    value: "gzip, deflate, br"                                # header的value
+  - key: "Accept-Language"                                  # header的key
+    value: "zh-CN,zh;q=0.9,en;q=0.8"                                # header的value
+  cookies:                                   # 请求cookie配置
+  - name: "$NAME$"                                 # cookie的name
+    value: "$VALUE$"                                # cookie的value
+restrictions-on-urls:                        # 对爬取的URL的一些限制项
+  disallowed-suffix: ['js','png','jpg','ico','css','gif','woff2','swf']                      # 不允许的文件后缀
+  disallowed-keywords-in-path-and-query: ['logout']  # 不允许的URL关键字
+  disallowed-domain: ['gov.cn','edu.cn']                      # 不允许的域名
+  disallowed-urls: []                        # 不允许的URL（正则）
+  allowed-domains: []                        # 允许的域名，起始目标会被自动加入其中
+  allowed-urls: []                           # 允许的URL（正则）
+restrictions-on-requests:                    # 对请求行为的一些限制项
+  max-concurrent: 10                         # 最大页面并发（不大于10）
+  max-depth: 5                               # 最大页面深度限制
+  max-click-depth: 5                         # 一个页面中最大点击深度限制
+  max-count-of-page: 1000                    # 最多爬取的页面数量限制
+  max-click-or-event-trigger: 1000           # 单个页面中最大点击或事件触发次数(不大于10000)
+  click-or-event-interval: 1000              # 点击间隔，单位毫秒
